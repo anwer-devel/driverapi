@@ -8,6 +8,7 @@ import espita.client1.proj1.utils.ConvertByteToMB;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.OutputStream;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class GoogleDriveFileService implements IGoogleDriveFile {
@@ -54,14 +56,26 @@ public class GoogleDriveFileService implements IGoogleDriveFile {
     }
 
     @Override
-    public void uploadFile(MultipartFile file, String filePath) {
+    public void uploadFile(MultipartFile file, String filePath, List<String> skills,String fullname, String titre) {
      
-        googleFileManager.uploadFile(file, filePath);
+        googleFileManager.uploadFile(file, filePath,skills,fullname,titre);
     }
 
     @Override
     public void downloadFile(String id, OutputStream outputStream) throws IOException, GeneralSecurityException {
         googleFileManager.downloadFile(id, outputStream);
     }
+    @Override
+	public void uploadsubFile(String folderId,String subfolderName, MultipartFile file, List<String> skills,String fullname, String titre, String folderName) throws IOException, GeneralSecurityException {
+		// TODO Auto-generated method stub
+		  googleFileManager.uploadsubFile(folderId,subfolderName, file,skills,fullname,titre,folderName);
+    }
+    @Override
+	public void uploadsubsubFile(String folderId, String subfolderName, String subsubfolderName,String folderName1, MultipartFile file,
+			List<String> skills,String fullname, String titre) throws IOException, GeneralSecurityException {
+    	 googleFileManager.uploadsubsubFile( folderId,subfolderName,subsubfolderName,folderName1,file,skills,fullname,titre);
+		
+	}
+	}
 
-}
+
